@@ -1,0 +1,22 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    
+</div>
+
+<feature name="@nameof(FeatureFlags.RecentPosts)">
+    <div class="text-left">
+
+        <ul>
+            @foreach (var blog in Model.RecentPosts)
+            {
+                <li><span>@blog.Title</span> <span class="font-weight-lighter">- @blog.Author</span></li>
+            }
+        </ul>
+    </div>
+</feature>
