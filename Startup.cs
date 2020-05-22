@@ -30,9 +30,12 @@ namespace FeatureManagementTargetingSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddSingleton<ITargetingContextAccessor, TargetingContextAccesor>();
             services.AddFeatureManagement()
                 .AddFeatureFilter<TimeWindowFilter>()
-                .AddFeatureFilter<PercentageFilter>();
+                .AddFeatureFilter<PercentageFilter>()
+                .AddFeatureFilter<TargetingFilter>();
             services.AddScoped<BlogService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
