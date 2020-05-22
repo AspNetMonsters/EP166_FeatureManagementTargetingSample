@@ -39,13 +39,23 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - FeatureManagementTargetingSample - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.HasClaim("Insider", "true"))
+                {
+
+                    <span>Welcome Insider!</span>
+                }
+                else
+                {
+                    <form asp-page="/Insider" asp-page-handler="Join">
+                        <button class="btn btn-outline-info" type="submit">Join Insider Program</button>
+                    </form>
+
+                }
+            }
         </div>
-        @if (User.Identity.IsAuthenticated)
-        {
-        <form asp-page="/Insider" asp-page-handler="Join">
-            <button class="btn btn-outline-info" type="submit">Join Insider Program</button>
-        </form>
-        }
+
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
